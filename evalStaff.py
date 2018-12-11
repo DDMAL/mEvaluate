@@ -8,5 +8,5 @@ class evalStaff(object):
     def __init__(self, **kwargs):
         pass
 
-    def evaluate(self, GT, OG):
+    def evaluate(self, s1, s2):
         return 0

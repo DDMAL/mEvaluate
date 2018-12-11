@@ -1,7 +1,7 @@
 # a tool for comparing two MEI files
 
 from evalMei import evalMei
-from pymei import documentFromFile, documentFromText
+from lxml import etree as ET
 import sys
 
 def input_args():
@@ -18,9 +18,11 @@ if __name__ == "__main__":
         exit()
 
     with open(inMei1,"r") as f:
-        mei1_text = f.read()
+        GT = ET.fromstring(f.read())
 
-    mei_1 = documentFromText(mei1_text)
-    # mei_2 = documentFromFile(inMei2)
+    with open(inMei2,"r") as f:
+        OG = ET.fromstring(f.read())
 
-    print "DONE"
+
+    mei_evaluator = evalMei()
+    mei_evaluator.evaluate(GT, OG)
